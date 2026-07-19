@@ -1,17 +1,39 @@
 # Medical AI: Diabetes Risk Diagnostic Neural Network
 
-A diagnostic deep learning project focused on classifying diabetic risk using clinical patient data. This repository features a custom neural network architecture optimized to handle high-variance medical datasets and prepared for production deployment.
+# Pima Indians Diabetes Prediction
 
-## 📈 Performance & Key Results
-* [cite_start]**Accuracy:** Achieved **77.86% classification accuracy** on the clinical test data[cite: 37].
-* [cite_start]**Production-Ready:** Successfully serialized the final model architecture and trained weights, making it completely ready for production deployment pipeline integration[cite: 37].
+This project uses a deep learning neural network built with Keras/TensorFlow to predict the onset of diabetes based on diagnostic measurements. 
 
-## 🛠️ Architecture & Optimization
-* [cite_start]**Feature Input:** Classifies risk using 8 high-variance clinical parameters including Glucose, Blood Pressure, Insulin, BMI, and Diabetes Pedigree Function[cite: 35, 36].
-* [cite_start]**Stability Engineering:** Integrated **Batch Normalization** and **ReLU activation functions** to stabilize gradient descent and properly handle high-variance features[cite: 36].
-* [cite_start]**Deployment Workflow:** Implemented model serialization (saving the architecture and weights) to bridge the gap between training and live inference[cite: 37].
+## Dataset
+The project uses the **Pima Indians Diabetes Database** (`pima-indians-diabetes.csv`). It contains data from Pima Indian women aged 21 or older. 
 
-## 🧰 Tech Stack
-* [cite_start]**Language:** Python [cite: 32]
-* **Deep Learning Framework:** NumPy / TensorFlow / PyTorch *(Note: choose the one you used!)*
-* **Data Handling:** Scikit-Learn, Pandas
+The dataset includes 8 medical predictor (input) variables and 1 target (output) variable:
+1. **Pregnancies:** Number of times pregnant
+2. **Glucose:** Plasma glucose concentration a 2 hours in an oral glucose tolerance test
+3. **BloodPressure:** Diastical blood pressure (mm Hg)
+4. **SkinThickness:** Triceps skin fold thickness (mm)
+5. **Insulin:** 2-Hour serum insulin (mu U/ml)
+6. **BMI:** Body mass index (weight in kg/(height in m)^2)
+7. **DiabetesPedigreeFunction:** A function that scores the likelihood of diabetes based on family history
+8. **Age:** Age in years
+9. **Outcome (Target):** Class variable (0 if non-diabetic, 1 if diabetic)
+
+## Model Architecture
+The neural network is built sequentially using Keras:
+* **Input Layer:** 8 nodes (matching the 8 features)
+* **Hidden Layer 1:** 12 nodes with ReLU activation
+* **Hidden Layer 2:** 8 nodes with ReLU activation
+* **Normalization:** Batch Normalization layer to improve training stability
+* **Output Layer:** 1 node with Sigmoid activation (for binary classification)
+
+The model is optimized using the **Adam** optimizer and evaluates performance using **Binary Crossentropy** loss.
+
+## How to Run
+1. Clone this repository or open the script in Google Colab.
+2. Download the `pima-indians-diabetes.csv` file.
+3. Run the script. If using Colab, the code will prompt you to upload the dataset file directly.
+
+## Saved Outputs
+After training, the script automatically saves the trained model architecture and weights to disk:
+* `model.json` (Neural network architecture)
+* `model.weights.h5` (Trained model weights)
